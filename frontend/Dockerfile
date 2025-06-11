@@ -1,10 +1,11 @@
+# Use Node.js 20 Alpine as base image
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Install dependencies
-COPY package.json package-lock.json ./
-RUN npm ci
+# Install dependencies - only copy package.json first
+COPY package.json ./
+RUN npm install
 
 # Copy application code
 COPY . .
